@@ -1,17 +1,15 @@
-# 1. Write a program to compute the sum of the first n terms of the series.
-
 ```cpp
+// 1. Sum of first n terms of series (1 + 2 + 3 + ... + n)
+
 #include <iostream>
 #include <cstdlib>
 using namespace std;
 
 int main(int argc, char* argv[]) {
-
     int n;
 
     if (argc > 1)
         n = atoi(argv[1]);
-
     else {
         cout << "Enter n: ";
         cin >> n;
@@ -30,34 +28,30 @@ int main(int argc, char* argv[]) {
 
 ---
 
-# 2. Write a program to remove duplicates from an array.
-
 ```cpp
+// 2. Remove duplicates from array
+
 #include <iostream>
 using namespace std;
 
 int main() {
-
     int n;
 
     cout << "Enter size of array: ";
     cin >> n;
 
-    int arr[100];
+    int arr[n];
 
     cout << "Enter elements:\n";
-
     for (int i = 0; i < n; i++)
         cin >> arr[i];
 
     cout << "Array after removing duplicates:\n";
 
     for (int i = 0; i < n; i++) {
-
         bool duplicate = false;
 
         for (int j = 0; j < i; j++) {
-
             if (arr[i] == arr[j]) {
                 duplicate = true;
                 break;
@@ -74,33 +68,27 @@ int main() {
 
 ---
 
-# 3. Write a program that prints occurrences of each alphabet.
-
 ```cpp
+// 3. Count occurrence of alphabets using command line arguments
+
 #include <iostream>
-#include <cctype>
+#include <cstring>
 using namespace std;
 
-int main() {
-
-    char text[200];
-
-    cin.ignore();
-
-    cout << "Enter text: ";
-    cin.getline(text, 200);
-
+int main(int argc, char* argv[]) {
     int freq[26] = {0};
 
-    for (int i = 0; text[i] != '\0'; i++) {
+    for (int i = 1; i < argc; i++) {
+        for (int j = 0; argv[i][j] != '\0'; j++) {
 
-        char ch = tolower(text[i]);
+            char ch = tolower(argv[i][j]);
 
-        if (ch >= 'a' && ch <= 'z')
-            freq[ch - 'a']++;
+            if (ch >= 'a' && ch <= 'z')
+                freq[ch - 'a']++;
+        }
     }
 
-    cout << "\nAlphabet Occurrences:\n";
+    cout << "Alphabet Occurrences:\n";
 
     for (int i = 0; i < 26; i++)
         cout << char(i + 'a') << " : " << freq[i] << endl;
@@ -111,34 +99,28 @@ int main() {
 
 ---
 
-# 4. Write a menu driven program for string manipulation.
-
 ```cpp
+// 4. Menu driven string manipulation program
+
 #include <iostream>
 using namespace std;
 
 class StringOperations {
-
 public:
 
     int length(char str[]) {
-
         int len = 0;
-
         while (str[len] != '\0')
             len++;
-
         return len;
     }
 
     void showAddress(char str[]) {
-
         for (int i = 0; str[i] != '\0'; i++)
             cout << str[i] << " -> " << (void*)&str[i] << endl;
     }
 
     void concatenate(char s1[], char s2[]) {
-
         int i = length(s1);
         int j = 0;
 
@@ -150,11 +132,10 @@ public:
 
         s1[i] = '\0';
 
-        cout << "Concatenated String: " << s1 << endl;
+        cout << "Concatenated String: " << s1;
     }
 
     void compare(char s1[], char s2[]) {
-
         int i = 0;
 
         while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
@@ -167,9 +148,7 @@ public:
     }
 
     void uppercase(char str[]) {
-
         for (int i = 0; str[i] != '\0'; i++) {
-
             if (str[i] >= 'a' && str[i] <= 'z')
                 str[i] = str[i] - 32;
         }
@@ -178,13 +157,11 @@ public:
     }
 
     void reverse(char str[]) {
-
         int len = length(str);
-
-        cout << "Reversed String: ";
 
         for (int i = len - 1; i >= 0; i--)
             cout << str[i];
+
     }
 
     void insert(char mainStr[], char insertStr[], int pos) {
@@ -193,14 +170,17 @@ public:
 
         int i = 0, j = 0, k = 0;
 
-        while (i < pos)
+        while (i < pos) {
             result[k++] = mainStr[i++];
+        }
 
-        while (insertStr[j] != '\0')
+        while (insertStr[j] != '\0') {
             result[k++] = insertStr[j++];
+        }
 
-        while (mainStr[i] != '\0')
+        while (mainStr[i] != '\0') {
             result[k++] = mainStr[i++];
+        }
 
         result[k] = '\0';
 
@@ -214,23 +194,16 @@ int main() {
 
     char s1[100], s2[100];
 
+    int choice;
+
     cout << "Enter first string: ";
     cin >> s1;
 
     cout << "Enter second string: ";
     cin >> s2;
 
-    int choice;
-
-    cout << "\n1. Address";
-    cout << "\n2. Concatenate";
-    cout << "\n3. Compare";
-    cout << "\n4. Length";
-    cout << "\n5. Uppercase";
-    cout << "\n6. Reverse";
-    cout << "\n7. Insert";
-
-    cout << "\nEnter choice: ";
+    cout << "\n1. Address\n2. Concatenate\n3. Compare\n4. Length\n5. Uppercase\n6. Reverse\n7. Insert\n";
+    cout << "Enter choice: ";
     cin >> choice;
 
     switch(choice) {
@@ -276,9 +249,9 @@ int main() {
 
 ---
 
-# 5. Write a program to merge two ordered arrays.
-
 ```cpp
+// 5. Merge two ordered arrays
+
 #include <iostream>
 using namespace std;
 
@@ -289,32 +262,28 @@ int main() {
     cout << "Enter size of first array: ";
     cin >> n1;
 
-    int a[100];
+    int a[n1];
 
     cout << "Enter sorted elements:\n";
-
     for (int i = 0; i < n1; i++)
         cin >> a[i];
 
     cout << "Enter size of second array: ";
     cin >> n2;
 
-    int b[100];
+    int b[n2];
 
     cout << "Enter sorted elements:\n";
-
     for (int i = 0; i < n2; i++)
         cin >> b[i];
 
-    int c[200];
+    int c[n1 + n2];
 
     int i = 0, j = 0, k = 0;
 
     while (i < n1 && j < n2) {
-
         if (a[i] < b[j])
             c[k++] = a[i++];
-
         else
             c[k++] = b[j++];
     }
@@ -336,9 +305,9 @@ int main() {
 
 ---
 
-# 6(a). Binary Search with recursion
-
 ```cpp
+// 6a. Binary Search with recursion
+
 #include <iostream>
 using namespace std;
 
@@ -366,10 +335,9 @@ int main() {
     cout << "Enter size: ";
     cin >> n;
 
-    int arr[100];
+    int arr[n];
 
     cout << "Enter sorted elements:\n";
-
     for (int i = 0; i < n; i++)
         cin >> arr[i];
 
@@ -382,7 +350,6 @@ int main() {
 
     if (result != -1)
         cout << "Element found at index " << result;
-
     else
         cout << "Element not found";
 
@@ -392,9 +359,9 @@ int main() {
 
 ---
 
-# 6(b). Binary Search without recursion
-
 ```cpp
+// 6b. Binary Search without recursion
+
 #include <iostream>
 using namespace std;
 
@@ -405,10 +372,9 @@ int main() {
     cout << "Enter size: ";
     cin >> n;
 
-    int arr[100];
+    int arr[n];
 
     cout << "Enter sorted elements:\n";
-
     for (int i = 0; i < n; i++)
         cin >> arr[i];
 
@@ -418,7 +384,6 @@ int main() {
     cin >> key;
 
     int low = 0, high = n - 1;
-
     int found = -1;
 
     while (low <= high) {
@@ -439,7 +404,6 @@ int main() {
 
     if (found != -1)
         cout << "Element found at index " << found;
-
     else
         cout << "Element not found";
 
@@ -449,9 +413,9 @@ int main() {
 
 ---
 
-# 7(a). GCD using recursion
-
 ```cpp
+// 7a. GCD with recursion
+
 #include <iostream>
 using namespace std;
 
@@ -478,9 +442,9 @@ int main() {
 
 ---
 
-# 7(b). GCD without recursion
-
 ```cpp
+// 7b. GCD without recursion
+
 #include <iostream>
 using namespace std;
 
@@ -492,7 +456,6 @@ int main() {
     cin >> a >> b;
 
     while (b != 0) {
-
         int temp = b;
         b = a % b;
         a = temp;
@@ -503,4 +466,4 @@ int main() {
     return 0;
 }
 ```
-# cpp-prac
+
